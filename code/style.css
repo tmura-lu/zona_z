@@ -15,7 +15,11 @@
 }
 
 .zombie {
-  background-image: url("assets/zombie.png");
+  background-image: url("../assets/zombie.png");
   background-size: cover;
   background-position: center;
+}
+
+.radiation {
+  background-color: purple;
 }
