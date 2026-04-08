@@ -13,3 +13,9 @@
   background-color: #ddd;
   border-radius: 4px;
 }
+
+.zombie {
+  background-image: url("assets/zombie.png");
+  background-size: cover;
+  background-position: center;
+}
