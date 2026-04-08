@@ -1,32 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
 #game-area {
   display: grid;
   grid-template-columns: repeat(8, 60px);
   grid-template-rows: repeat(8, 60px);
-  gap: 4px;
+  gap: 6px;
   justify-content: center;
-  margin-top: 20px;
+  margin: 30px 0;
+  padding: 10px;
+  background: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .cell {
-  width: 60px;
-  height: 60px;
-  background-color: #ddd;
-  border-radius: 4px;
+  background: #334155;
+  border-radius: 8px;
+}
+
+.radiation {
+  background: radial-gradient(circle, #a855f7, #581c87);
+  box-shadow: 0 0 10px #a855f7;
 }
 
 .zombie {
   background-image: url("../assets/zombie.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.radiation {
-  background-color: purple;
 }
 
 .survivor {
   background-image: url("../assets/survivor.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+}
+
+@keyframes movePop {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.zombie,
+.survivor {
+  background-size: cover;
   background-position: center;
+  image-rendering: pixelated;
+  transition: transform 0.1s;
+  animation: movePop 0.15s;
+}
+
+.zombie:hover {
+  transform: scale(1.1);
+}
+
+#info-area {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+#moves {
+  margin-bottom: 10px;
+}
+
+#restart-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#restart-btn:hover {
+  background: #16a34a;
+  transform: scale(1.05);
 }
