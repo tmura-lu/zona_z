@@ -1,3 +1,5 @@
+let moves = 0;
+const movesDisplay = document.getElementById("moves");
 const size = 8;
 const gameArea = document.getElementById("game-area");
 const GAME_STATE = {
@@ -63,6 +65,8 @@ function render() {
   // adiciona o sobrevivente
   const sCell = document.getElementById(`cell-${survivor.x}-${survivor.y}`);
   if (sCell) sCell.classList.add("survivor");
+
+  movesDisplay.textContent = `Movimentos: ${moves}`;
 }
 
 function moveZombie(dx, dy) {
@@ -78,8 +82,10 @@ function moveZombie(dx, dy) {
   zombie.x = newX;
   zombie.y = newY;
 
-  moveSurvivor();
+  moves++;
 
+  moveSurvivor();
+  checkWin();
   render();
 }
 
@@ -119,11 +125,34 @@ function moveSurvivor() {
   }
 }
 
+function checkWin() {
+  if (zombie.x === survivor.x && zombie.y === survivor.y) {
+    gameState = GAME_STATE.WIN;
+    setTimeout(() => {
+      alert(`Você venceu em ${moves} movimentos!`);
+    }, 100);
+  }
+}
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp") moveZombie(0, -1);
   if (e.key === "ArrowDown") moveZombie(0, 1);
   if (e.key === "ArrowLeft") moveZombie(-1, 0);
   if (e.key === "ArrowRight") moveZombie(1, 0);
+});
+
+document.getElementById("restart-btn").addEventListener("click", () => {
+  zombie.x = 0;
+  zombie.y = 0;
+
+  survivor.x = size - 1;
+  survivor.y = size - 1;
+
+  moves = 0;
+  gameState = GAME_STATE.PLAYING;
+
+  createGrid();
+  render();
 });
 
 createGrid();
