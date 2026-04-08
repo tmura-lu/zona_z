@@ -23,3 +23,10 @@
 .radiation {
   background-color: purple;
 }
+
+.survivor {
+  background-image: url("../assets/survivor.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

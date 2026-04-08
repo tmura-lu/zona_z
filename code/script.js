@@ -10,6 +10,11 @@ const zombie = {
   y: 0,
 };
 
+const survivor = {
+  x: size - 1,
+  y: size - 1,
+};
+
 let gameState = GAME_STATE.PLAYING;
 
 let board = [];
@@ -54,6 +59,10 @@ function render() {
   // adiciona o zumbi na posição atual
   const cell = document.getElementById(`cell-${zombie.x}-${zombie.y}`);
   if (cell) cell.classList.add("zombie");
+
+  // adiciona o sobrevivente
+  const sCell = document.getElementById(`cell-${survivor.x}-${survivor.y}`);
+  if (sCell) sCell.classList.add("survivor");
 }
 
 function moveZombie(dx, dy) {
@@ -69,7 +78,45 @@ function moveZombie(dx, dy) {
   zombie.x = newX;
   zombie.y = newY;
 
+  moveSurvivor();
+
   render();
+}
+
+function moveSurvivor() {
+  const directions = [
+    { dx: 1, dy: 0 },
+    { dx: -1, dy: 0 },
+    { dx: 0, dy: 1 },
+    { dx: 0, dy: -1 },
+  ];
+
+  let bestMove = null;
+  let maxDist = -1;
+
+  directions.forEach((d) => {
+    const nx = survivor.x + d.dx;
+    const ny = survivor.y + d.dy;
+
+    // fora do mapa
+    if (nx < 0 || ny < 0 || nx >= size || ny >= size) return;
+
+    // nao pode ir pra radiação
+    if (board[ny][nx] === "radiation") return;
+
+    // distância do zumbi
+    const dist = Math.abs(nx - zombie.x) + Math.abs(ny - zombie.y);
+
+    if (dist > maxDist) {
+      maxDist = dist;
+      bestMove = { x: nx, y: ny };
+    }
+  });
+
+  if (bestMove) {
+    survivor.x = bestMove.x;
+    survivor.y = bestMove.y;
+  }
 }
 
 document.addEventListener("keydown", (e) => {
