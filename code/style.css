@@ -56,10 +56,6 @@ body {
   animation: movePop 0.15s;
 }
 
-.zombie:hover {
-  transform: scale(1.1);
-}
-
 #info-area {
   margin-top: 10px;
   font-size: 18px;

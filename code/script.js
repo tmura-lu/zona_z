@@ -77,6 +77,8 @@ function moveZombie(dx, dy) {
 
   if (newX < 0 || newX >= size || newY < 0 || newY >= size) return;
 
+  if (board[newY][newX] === "radiation") return;
+
   board[zombie.y][zombie.x] = "radiation";
 
   zombie.x = newX;
