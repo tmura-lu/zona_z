@@ -31,11 +31,11 @@ body {
 }
 
 .zombie {
-  background-image: url("/assets/zombie.png");
+  background-image: url("assets/zombie.png");
 }
 
 .survivor {
-  background-image: url("/assets/survivor.png");
+  background-image: url("assets/survivor.png");
 }
 
 @keyframes movePop {
