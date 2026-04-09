@@ -41,10 +41,9 @@ A cada movimento do zumbi:
 
 ```
 zona-z/
-│── code/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+│── index.html
+│── style.css
+│── script.js
 │── assets/
 │   ├── img_logo.png
 │   ├── zombie.png
